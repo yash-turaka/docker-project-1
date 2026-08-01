@@ -24,13 +24,15 @@ services:
     ports:
       - "8000:8000"
 
-  frontend:
-    build:
-      context: ./frontend
-    depends_on:
-      - backend
-    ports:
-      - "80:80"
+frontend:
+  build:
+    context: ./frontend
+    args:
+      REACT_APP_API_BASE_URL: http://3.26.221.160:8000
+  depends_on:
+    - backend
+  ports:
+    - "80:80"
 
 volumes:
   pgdata:
